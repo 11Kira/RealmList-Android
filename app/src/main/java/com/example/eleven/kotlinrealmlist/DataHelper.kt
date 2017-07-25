@@ -8,11 +8,11 @@ import io.realm.Realm
 class DataHelper {
 
     fun addItemAsync(realm: Realm){
-        realm.executeTransaction {  }
+        realm.executeTransactionAsync {  }
     }
 
     fun deleteItemAsync(realm: Realm){
-        realm.executeTransaction {  }
+        realm.executeTransactionAsync {  }
     }
 
 }
