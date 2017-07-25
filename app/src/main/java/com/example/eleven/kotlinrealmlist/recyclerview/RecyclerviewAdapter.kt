@@ -9,12 +9,14 @@ import com.example.eleven.kotlinrealmlist.R
 import com.example.eleven.kotlinrealmlist.model.Animal
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
+import kotlinx.android.synthetic.main.layout_recyclerview_item.view.*
 
-class RecyclerviewAdapter(animal: OrderedRealmCollection<Animal>?, autoUpdate: Boolean) : RealmRecyclerViewAdapter<Animal, RecyclerviewAdapter.ViewHolder>(animal, autoUpdate) {
+class RecyclerviewAdapter(animals: OrderedRealmCollection<Animal>?, autoUpdate: Boolean) : RealmRecyclerViewAdapter<Animal, RecyclerviewAdapter.ViewHolder>(animals, autoUpdate) {
 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var animals: Animal? = getItem(position)
+        holder?.name?.text = animals?.animalName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -22,8 +24,14 @@ class RecyclerviewAdapter(animal: OrderedRealmCollection<Animal>?, autoUpdate: B
         return ViewHolder(itemView)
     }
 
+    override fun getItemId(index: Int): Long {
+        return super.getItemId(index)
+    }
 
-    class ViewHolder(view : View?): RecyclerView.ViewHolder(view) {
 
+    class ViewHolder(itemView : View?): RecyclerView.ViewHolder(itemView) {
+        var name = itemView?.txtAnimalName
+        var type = itemView?.txtAnimalType
+        var age = itemView?.txtAnimalAge
     }
 }
