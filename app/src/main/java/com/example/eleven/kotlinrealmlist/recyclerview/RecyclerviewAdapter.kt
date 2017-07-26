@@ -11,12 +11,11 @@ import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import kotlinx.android.synthetic.main.layout_recyclerview_item.view.*
 
-class RecyclerviewAdapter(animals: OrderedRealmCollection<Animal>?, autoUpdate: Boolean) : RealmRecyclerViewAdapter<Animal, RecyclerviewAdapter.ViewHolder>(animals, autoUpdate) {
+class RecyclerviewAdapter(data: OrderedRealmCollection<Animal>?, autoUpdate: Boolean) : RealmRecyclerViewAdapter<Animal, RecyclerviewAdapter.ViewHolder>(data, autoUpdate) {
 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        var animals: Animal? = getItem(position)
-        holder?.name?.text = animals?.animalName
+        holder?.bind(data?.get(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -30,8 +29,11 @@ class RecyclerviewAdapter(animals: OrderedRealmCollection<Animal>?, autoUpdate: 
 
 
     class ViewHolder(itemView : View?): RecyclerView.ViewHolder(itemView) {
-        var name = itemView?.txtAnimalName
-        var type = itemView?.txtAnimalType
-        var age = itemView?.txtAnimalAge
+
+        fun bind(animal: Animal?) = with(itemView) {
+            txtAnimalName.text = animal?.animalName
+            txtAnimalAge.text = animal?.animalAge.toString()
+            txtAnimalType.text = animal?.animalType
+        }
     }
 }
