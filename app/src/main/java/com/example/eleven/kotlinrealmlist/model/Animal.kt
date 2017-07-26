@@ -2,19 +2,22 @@ package com.example.eleven.kotlinrealmlist.model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import io.realm.annotations.Required
 
 /**
  * Created by ELEVEN on 7/25/2017.
  */
 
-open class Animal : RealmObject() {
+open class Animal(@PrimaryKey var animalID: Long = 0) : RealmObject() {
 
-    @PrimaryKey
-    @Required
-    var animalID: Int = 0
+    var animalName: String? = ""
+    var animalAge: Int = 0
+    var animalType: String? = ""
 
-    var animalName: String? = null
-    var animalAge: Int? = null
-    var animalType: String? = null
+    constructor(id: Long, name: String): this(id) {
+        animalID = id
+        animalName = name
+    }
+    override fun toString(): String {
+        return "animalID => $animalID animalName => $animalName"
+    }
 }

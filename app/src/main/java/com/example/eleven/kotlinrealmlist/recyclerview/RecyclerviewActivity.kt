@@ -35,9 +35,7 @@ class RecyclerviewActivity : AppCompatActivity() {
     }
 
     fun addDataToAnimals() : Animal{
-        var animal1 = Animal()
-        animal1.animalID = 1
-        animal1.animalName = "Cholo"
+        var animal1 = Animal(1, "Cholo")
         animal1.animalAge = 4
         animal1.animalType = "Dog"
         return animal1

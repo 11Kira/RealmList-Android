@@ -10,10 +10,8 @@ import kotlin.properties.Delegates
  */
 class MyApplication : Application() {
 
-    private var realm: Realm by Delegates.notNull()
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
-        realm = Realm.getDefaultInstance()
     }
 }
