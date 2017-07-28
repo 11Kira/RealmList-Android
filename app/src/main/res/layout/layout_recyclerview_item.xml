@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.eleven.kotlinrealmlist.recyclerview.RecyclerviewAdapter"
     android:background="#666">
 
     <LinearLayout
+        android:id="@+id/layout_recycler"
         android:background="#551A8B"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,12 +20,37 @@
             android:orientation="horizontal">
             <TextView
                 android:textStyle="bold"
-                android:textColor="#ff0000"
-                android:text="ANIMAL NAME: "
-                android:layout_width="wrap_content"
+                android:textColor="#ffbb00"
+                android:text="ANIMAL ID: "
+                android:layout_width="0dp"
+                android:layout_weight=".1"
                 android:layout_height="wrap_content"
                 android:padding="10dp"/>
             <TextView
+
+                android:id="@+id/txtAnimalID"
+                android:textColor="#fff"
+                android:text="Sample animal ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:textStyle="bold"
+                android:textColor="#ff0000"
+                android:text="ANIMAL NAME: "
+                android:layout_width="0dp"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:padding="10dp"/>
+            <TextView
+
                 android:id="@+id/txtAnimalName"
                 android:textColor="#fff"
                 android:text="Sample animal name"
@@ -40,14 +66,17 @@
                 android:textStyle="bold"
                 android:textColor="#0000ff"
                 android:text="ANIMAL AGE: "
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".1"
                 android:layout_height="wrap_content"
                 android:padding="10dp"/>
             <TextView
+                android:gravity="right"
                 android:id="@+id/txtAnimalAge"
                 android:textColor="#fff"
                 android:text="Sample animal age"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".1"
                 android:layout_height="wrap_content"
                 android:padding="10dp"/>
         </LinearLayout>
@@ -59,17 +88,26 @@
                 android:textStyle="bold"
                 android:textColor="#00ff00"
                 android:text="ANIMAL TYPE: "
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".1"
                 android:layout_height="wrap_content"
                 android:padding="10dp"/>
             <TextView
+                android:gravity="right"
                 android:id="@+id/txtAnimalType"
                 android:textColor="#fff"
                 android:text="Sample animal type"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".1"
                 android:layout_height="wrap_content"
                 android:padding="10dp"/>
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_below="@id/layout_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFFFF"/>
 </RelativeLayout>

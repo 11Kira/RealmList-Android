@@ -13,5 +13,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        var config: RealmConfiguration = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
+        Realm.setDefaultConfiguration(config)
     }
 }

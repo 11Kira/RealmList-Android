@@ -3,6 +3,7 @@ package com.example.eleven.kotlinrealmlist
 import android.util.Log
 import com.example.eleven.kotlinrealmlist.model.Animal
 import io.realm.Realm
+import io.realm.RealmResults
 import java.util.concurrent.atomic.AtomicInteger
 
 
@@ -21,7 +22,6 @@ open class DataHelper {
     }
 
     fun addItemAsync(realm: Realm?, animal: Animal){
-        Log.d(TAG, "animal: " + animal.toString())
         var lastAnimalID: Long? = 0
         try {
             lastAnimalID = realm?.where(Animal::class.java)?.findAllSorted("animalID")?.last()?.animalID
@@ -30,8 +30,11 @@ open class DataHelper {
             e.printStackTrace()
         }
         Log.d(TAG, "lastAnimalID: " + lastAnimalID)
+        animal.animalID = lastAnimalID?.inc() as Long
+        Log.d(TAG, "animal: " + animal.toString())
+
         realm?.executeTransaction {
-            var animals: Animal = realm?.createObject(Animal::class.java, lastAnimalID?.inc())
+            var animals: Animal = realm?.createObject(Animal::class.java, animal.animalID)
             animals.animalName = animal.animalName
             animals.animalAge = animal.animalAge
             animals.animalType = animal.animalType
@@ -39,8 +42,12 @@ open class DataHelper {
         }
     }
 
-    fun deleteItemAsync(realm: Realm){
-        realm.executeTransactionAsync {  }
+    fun deleteItemAsync(realm: Realm?){
+        var results: RealmResults<Animal>? = realm?.where(Animal::class.java)?.findAll()
+
+        realm?.executeTransaction {
+            results?.deleteAllFromRealm()
+        }
     }
 
     @Synchronized fun getNextKey(realm: Realm): Long {

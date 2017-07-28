@@ -31,6 +31,7 @@ class RecyclerviewAdapter(data: OrderedRealmCollection<Animal>?, autoUpdate: Boo
     class ViewHolder(itemView : View?): RecyclerView.ViewHolder(itemView) {
 
         fun bind(animal: Animal?) = with(itemView) {
+            txtAnimalID.text = animal?.animalID.toString()
             txtAnimalName.text = animal?.animalName
             txtAnimalAge.text = animal?.animalAge.toString()
             txtAnimalType.text = animal?.animalType
